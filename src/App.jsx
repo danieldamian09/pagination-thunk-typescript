@@ -2,12 +2,11 @@ import {useEffect, useState} from "react";
 import {getPokemonsHome} from "./services/getPokemonsHome";
 
 function App() {
-  const [pokemonsHome, setPokemonsHome] = useState([]);
-  // Paginacion
-  const [nextPage, setNextPage] = useState(0);
+	const [pokemonsHome, setPokemonsHome] = useState([]);
+	// Paginacion
+	const [nextPage, setNextPage] = useState(0);
 
-
-  useEffect(() => {
+	useEffect(() => {
 		getPokemonsHome(nextPage).then((pokemons) => setPokemonsHome(pokemons));
 	}, [nextPage]);
 
@@ -23,8 +22,19 @@ function App() {
 			</div>
 			{/* Paginacion */}
 			<div className="w-full flex justify-between py-6">
-				<button className="bg-blue-600 rounded-lg py-2 px-4 text-white" onClick={() => setNextPage(prev => prev - 1)} disabled={nextPage === 0 ? true :false}>Anterior</button>
-				<button className="bg-blue-600 rounded-lg py-2 px-4 text-white"onClick={() => setNextPage(prev => prev + 1)}>Siguiente</button>
+				<button
+					className="bg-blue-600 rounded-lg py-2 px-4 text-white"
+					onClick={() => setNextPage((prev) => prev - 1)}
+					disabled={nextPage === 0 ? true : false}
+				>
+					Anterior
+				</button>
+				<button
+					className="bg-blue-600 rounded-lg py-2 px-4 text-white"
+					onClick={() => setNextPage((prev) => prev + 1)}
+				>
+					Siguiente
+				</button>
 			</div>
 		</div>
 	);
