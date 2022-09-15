@@ -1,44 +1,23 @@
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {
-	buscarPokemons,
-	comenzarDescargaPokemones,
-	descargaPokemonesError,
-	descargaPokemonesExito,
-} from "./actions/actions";
-import {getPokemonsHome} from "./services/getPokemonsHome";
+import {buscarPokemons} from "./actions/actions";
 
 function App() {
-
-	// Estado pagionado
 	const [pagina, setPagina] = useState(0);
-	
+
 	const pokemonsHome = useSelector((state) => state.pokemons.pokemons);
 	const load = useSelector((state) => state.pokemons.isLoading);
 
 	const dispatch = useDispatch();
 
-	// const getData = async (page) => {
-	// 	dispatch(comenzarDescargaPokemones());
-	// 	try {
-	// 		const pokemons = await getPokemonsHome(page);
-	// 		// console.log(pokemons);
-	// 		// console.log(getState());
-	// 		dispatch(descargaPokemonesExito(pokemons));
-	// 	} catch (error) {
-	// 		dispatch(descargaPokemonesError(error));
-	// 	}
-	// };
-
 	useEffect(() => {
-		// getData();
 		dispatch(buscarPokemons(pagina));
 	}, [pagina]);
 
 	return (
 		<>
 			<div className="container mx-auto min-h-screen">
-			{load && <h1 className='text-white'>Loading...</h1>}
+				{load && <h1 className="text-white">Loading...</h1>}
 				<h1 className="text-white text-3xl text-center py-2">Pokemons</h1>
 				<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6">
 					{pokemonsHome?.map((pokemon) => (
@@ -48,9 +27,20 @@ function App() {
 					))}
 				</div>
 				<div className="w-full flex justify-between py-6">
-				<button className="bg-blue-600 rounded-lg py-2 px-4 text-white" onClick={() => setPagina(prev => prev - 1)} disabled={pagina === 0 ? true :false}>Anterior</button>
-				<button className="bg-blue-600 rounded-lg py-2 px-4 text-white"onClick={() => setPagina(prev => prev + 1)}>Siguiente</button>
-			</div>
+					<button
+						className="bg-blue-600 rounded-lg py-2 px-4 text-white"
+						onClick={() => setPagina((prev) => prev - 1)}
+						disabled={pagina === 0 ? true : false}
+					>
+						Anterior
+					</button>
+					<button
+						className="bg-blue-600 rounded-lg py-2 px-4 text-white"
+						onClick={() => setPagina((prev) => prev + 1)}
+					>
+						Siguiente
+					</button>
+				</div>
 			</div>
 		</>
 	);

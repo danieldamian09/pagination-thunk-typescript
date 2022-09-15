@@ -5,6 +5,8 @@ export const getPokemonsHome = async (page) => {
 		const results = await response.json();
 		return results.results;
 	} catch (error) {
-		console.log(error);
+		if (response.status === 404) {
+			throw new Error('No se encontró el pokemon');
+		}
 	}
 };
