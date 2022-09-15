@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {buscarPokemons} from "./actions/actions";
+import { Spinner } from './components/Spinner/Spinner';
 
 function App() {
 	const [pagina, setPagina] = useState(0);
@@ -17,7 +18,7 @@ function App() {
 	return (
 		<>
 			<div className="container mx-auto min-h-screen">
-				{load && <h1 className="text-white">Loading...</h1>}
+				{load && <Spinner />}
 				<h1 className="text-white text-3xl text-center py-2">Pokemons</h1>
 				<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6">
 					{pokemonsHome?.map((pokemon) => (
