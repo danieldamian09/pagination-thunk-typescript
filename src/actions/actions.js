@@ -10,14 +10,18 @@ export const comenzarDescargaPokemones = () => {
 export const descargaPokemonesExito = (pokemons) => {
   return {
     type: "DESCARGA_POKEMONS_EXITO",
-    pokemons: pokemons
+    payload: {
+      pokemons
+    }
   }
 }
 
 export const descargaPokemonesError = (error) => {
   return {
     type: "DESCARGA_POKEMONS_ERROR",
-    error:error
+    payload: {
+      error
+    }
   }
 }
 

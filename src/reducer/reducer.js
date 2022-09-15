@@ -17,7 +17,7 @@ export const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				isLoading: false,
-				pokemons: [...action.pokemons],
+				pokemons: [...action.payload.pokemons],
 			};
 		}
 
@@ -26,7 +26,7 @@ export const reducer = (state = initialState, action) => {
 				...state,
 				isLoading: false,
 				pokemons: [],
-				error: action.error,
+				error: action.payload.error,
 			};
 		}
 
