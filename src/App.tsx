@@ -1,12 +1,13 @@
 import {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {buscarPokemons} from "./actions/actions";
+import {useDispatch} from "react-redux";
+import { buscarPokemons } from './actions/actions';
 import { Spinner } from './components/Spinner/Spinner';
+import { useSelector } from './store/store';
 
 function App() {
 	const [pagina, setPagina] = useState(0);
 
-	const pokemonsHome = useSelector((state) => state.pokemons.pokemons);
+	const pokemonsHome = useSelector(state => state.pokemons.pokemons)
 	const load = useSelector((state) => state.pokemons.isLoading);
 
 	const dispatch = useDispatch();

@@ -1,11 +1,22 @@
-const initialState = {
+import { Reducer } from '@reduxjs/toolkit';
+import { PersonajesActions } from '../actions/actions';
+import { Pokemons } from '../interface/pokemons';
+
+interface InitialState {
+	page: number;
+	pokemons: Pokemons[];
+	isLoading: boolean;
+	error: string;
+}
+
+const initialState:InitialState = {
 	page: 0,
 	pokemons: [],
 	isLoading: false,
 	error: "",
 };
 
-export const reducer = (state = initialState, action) => {
+export const reducer:Reducer<InitialState, PersonajesActions> = (state = initialState, action) => {
 	switch (action.type) {
 		case "COMENZAR_DESCARGA_POKEMONS": {
 			return {
